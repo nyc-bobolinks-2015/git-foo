@@ -1,3 +1,3 @@
-class BirdHouses < ActiveRecord::Base
+class BirdsHouse < ActiveRecord::Base
   # Remember to create a migration!
 end
