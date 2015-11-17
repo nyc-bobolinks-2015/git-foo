@@ -1,3 +1,21 @@
+$(document).ready(function() {
+  console.log('Document is ready now!');
+
+  $('.colorize').on('click', function(event) {
+    event.preventDefault();
+
+    var body = $('body');
+    if (body.css('background-color') == "rgb(255, 165, 0)") {
+      $('body').css('background-color', 'black');
+    }
+    else {
+      $('body').css('background-color', 'Orange');
+    }
+  });
+
+});
+
+/*
 
 var foo = '5';
 var bar = 6;
@@ -32,7 +50,7 @@ if(5 == '5'){
 }
 
 if(5 === '5'){
-  console.log(" triple equals is type "); 
+  console.log(" triple equals is type ");
 }
 
 if(false == 0 ){
@@ -43,8 +61,8 @@ var stayinAlive = function(){
   return 'staaayyyiinnnnn Allllliivveeeeeeee';
 }
 
-var myObj = {foo: "hi", 
-             bar: "bye", 
+var myObj = {foo: "hi",
+             bar: "bye",
              bazz: "zack",
              func: stayinAlive };
 
@@ -65,3 +83,4 @@ console.log( myObj.func() );
 var myArry = [];
 myArry["x"] = "y";
 
+*/
