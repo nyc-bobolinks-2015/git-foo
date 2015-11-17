@@ -1,3 +1,4 @@
 class BirdsHouse < ActiveRecord::Base
-  # Remember to create a migration!
+  belongs_to :bird
+  belongs_to :house
 end

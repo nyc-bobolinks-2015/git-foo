@@ -1,0 +1,9 @@
+<h1>All Of The Birds</h1>
+<div id='bird-list'>
+  <% @birds.each do |curr_bird| %>
+    <%= erb :'birds/_bird', locals:{bird: curr_bird}, layout: false %>
+  <% end %>
+</div>
+<div id='controls'>
+  <a class='btn' href='birds/new'>Make a New Bird</a>
+</div>
