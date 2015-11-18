@@ -4,7 +4,11 @@
     <%= erb :'birds/_bird', locals:{bird: curr_bird}, layout: false %>
   <% end %>
 </div>
+<div id='add-bird'>
+  <%= erb :'birds/_form', locals: {bird: @bird}, layout: false %>
+</div>
 <div id='controls'>
   <a class='btn' href='birds/new'>Make a New Bird</a>
   <a class='colorize' href='#'>Make this page beautiful</a>
 </div>
+<a href='#' id='btn-bird-count' > get bird count</a>

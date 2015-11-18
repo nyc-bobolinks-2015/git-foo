@@ -1,5 +1,8 @@
+require 'pry'
+
 get '/birds' do 
   @birds = Bird.all
+  @bird = Bird.new
   erb :'birds/index'
 end
 
@@ -11,6 +14,10 @@ get '/birds/new' do
 
   @bird = Bird.new
   erb :'birds/new'
+end
+
+get '/birds/count' do
+  "The count of the birds is #{Bird.all.length}"
 end
 
 get '/birds/:id/edit' do
@@ -36,7 +43,7 @@ end
 post '/birds' do
   bird = Bird.new(params[:bird])
   if bird.save
-    redirect '/birds'
+    erb :'birds/_bird', locals: {bird: bird}, layout: false
   else
     session[:errors] = bird.errors.full_messages
     redirect "/birds/new"

@@ -1,4 +1,62 @@
 $(document).ready(function() {
+
+  $('#btn-bird-count').on('click',function(event){
+    event.preventDefault();
+
+    console.log("1")
+
+    $.ajax({
+      method: 'get',
+      url: '/birds/count'
+    }).done(function(responseBody){
+      console.log("2")
+      console.log(responseBody);
+    }).fail(function(error){
+      console.log("3")
+      console.log(error);
+    });
+
+    console.log("4");
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   console.log('Document is ready now!');
 
   $('.colorize').on('click', function(event) {
@@ -12,6 +70,34 @@ $(document).ready(function() {
       $('body').css('background-color', 'Orange');
     }
   });
+
+  // $('#sub-btn').on('click',function(event){
+  //   debugger
+  // });
+
+  $('#bird-adder').on('submit',function(event){
+    event.preventDefault();
+    //CAST AJAX SPELL
+    //Three Parts of the Request are...
+    // method: [get,post,put,delete]  
+    // route: /birds
+    // data: KV pair of inputs from our form
+    var formMethod = $(event.target).attr('method');
+    var route = $(event.target).attr('action');
+    var data = $(event.target).serialize();
+
+    var argHash = {url: route, method: formMethod, data: data }
+    var requestObj = $.ajax(argHash);
+
+    requestObj.done(function(responseBody){
+      $('#bird-list').append(responseBody);
+    });
+
+    requestObj.fail(function(error){
+      console.log("ERRRRoRRRRROROROROR");
+    });
+  });
+
 
 });
 

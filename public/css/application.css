@@ -3,9 +3,19 @@ h1{
 }
 
 #bird-list{
- width: 100%; 
+  float: left;
+  display: block;
+ width: 49%; 
  background-color: blue;
  color: white;
+}
+
+#add-bird{
+ width: 49%; 
+ float: left;
+ display: block;
+ background-color: blue;
+ color: black;
 }
 
 #bird-list > .bird{
