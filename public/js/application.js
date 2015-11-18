@@ -1,4 +1,42 @@
+// <div id='add-bird'> --> event listener goes here
+//   <!-- AJAX FIRES -->
+//   <form id='bird-adder'> but it only listens for events from things with this id
+//   </form>
+//   <!-- -->
+// </div>
+
+
 $(document).ready(function() {
+
+  $('#add-bird').on('submit', '#bird-adder', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      method: 'post',
+      url: $(event.target).attr('action'),
+      data: $(event.target).serialize()
+    }).done(function(result) {
+      $('#bird-adder').remove(); // Remove the form once we've added the bird successfully
+      $('#bird-list').append(result);
+    }).fail(function(error) {
+      console.log('Fail! ' + error)
+    });
+  });
+
+
+  $('#newbird').on('click', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      method: 'get',
+      url: $(event.target).attr('href')
+    }).done(function(result) {
+      $('#add-bird').append(result);
+    }).fail(function(error) {
+      console.log('Failed: ' + error)
+    });
+  })
+
 
   $('#btn-bird-count').on('click',function(event){
     event.preventDefault();
@@ -79,7 +117,7 @@ $(document).ready(function() {
     event.preventDefault();
     //CAST AJAX SPELL
     //Three Parts of the Request are...
-    // method: [get,post,put,delete]  
+    // method: [get,post,put,delete]
     // route: /birds
     // data: KV pair of inputs from our form
     var formMethod = $(event.target).attr('method');

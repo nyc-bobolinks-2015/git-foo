@@ -1,19 +1,26 @@
 require 'pry'
 
-get '/birds' do 
+get '/birds' do
   @birds = Bird.all
   @bird = Bird.new
   erb :'birds/index'
 end
 
-get '/birds/new' do 
+get '/birds/new' do
   if session[:errors]
     @errors = session[:errors]
     session.delete(:errors)
   end
 
   @bird = Bird.new
-  erb :'birds/new'
+
+  # if request.xhr?
+  #   erb :'birds/new', layout: false
+  # else
+  #   erb :'birds/new'
+  # end
+
+  erb :'birds/new', layout: !request.xhr?
 end
 
 get '/birds/count' do
@@ -25,7 +32,7 @@ get '/birds/:id/edit' do
     @errors = session[:errors]
     session.delete(:errors)
   end
-  
+
   @bird = Bird.find_by(id: params[:id])
   erb :'birds/edit'
 end
@@ -33,7 +40,7 @@ end
 put '/birds/:id' do
   bird = Bird.find_by(id: params[:id])
   if bird.update_attributes(params[:bird])
-    redirect "/birds" 
+    redirect "/birds"
   else
     session[:errors] = bird.errors.full_messages
     redirect "/birds/#{bird.id}/edit"

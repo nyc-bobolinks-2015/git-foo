@@ -5,10 +5,12 @@
   <% end %>
 </div>
 <div id='add-bird'>
-  <%= erb :'birds/_form', locals: {bird: @bird}, layout: false %>
+  <form action='/birds'>
+    <input type='submit'>Show all the birds</input>
+  </form>
 </div>
 <div id='controls'>
-  <a class='btn' href='birds/new'>Make a New Bird</a>
+  <a id='newbird' class='btn' href='birds/new'>Make a New Bird</a>
   <a class='colorize' href='#'>Make this page beautiful</a>
 </div>
 <a href='#' id='btn-bird-count' > get bird count</a>
